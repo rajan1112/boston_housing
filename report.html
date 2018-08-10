@@ -11802,7 +11802,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11876,20 +11876,20 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
 <span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
@@ -12114,6 +12114,7 @@ Standard deviation of prices: $165171.13154429477
 <p><strong>Answer:</strong></p>
 <ul>
 <li>This model has successfully captured the variation of target variable because we got a R2 score of .923. That means 92.3% of variance in Y is predictable from X.</li>
+<li>R^2 is a staistical measure of how close the data is to the fitted regression line. It is the percentage of response variable variation that is explained by the linear line. That is Explained variation/Total variation. So if the explained variation is higher then the model is successfully capturing the variation. 1.0 or 100% percent means that model explains all the variability of response data around its mean.</li>
 </ul>
 
 </div>
@@ -12194,6 +12195,7 @@ Standard deviation of prices: $165171.13154429477
 <p><strong>Answer: </strong></p>
 <ul>
 <li>Splitting of dataset in to some ratio is important so that to test the model and figure out that we are not overfitting or underfitting. For eg: if we don't split the data and try to create a model with high variance, then we are overfitting, unless we test the model and figure out the errors.</li>
+<li>If we use all the data for training, then there is high probability that model with either overfir or underfit. In case of underfitting, the training score will be low and in case of overfitting, the training score wil be high. Although the training score will be high, but when we actually test the model it might be different. Testing data can avoid these circumstances because after training the data, testing data will make sure that our model is performing well.</li>
 </ul>
 
 </div>
@@ -12278,7 +12280,7 @@ Think about the pros and cons of adding more training points based on if the tra
 <ul>
 <li>Maximum depth for the model is 3</li>
 <li>Score of the training curve will become more precise when the more points are added. Testing curve will converge with the training curve on adding more points.</li>
-<li>More training point will give precise score for the model</li>
+<li>Over here as we have 400 training points, model will not benifit if we add more as there is enough data to train the model.</li>
 </ul>
 
 </div>
@@ -12411,7 +12413,11 @@ Think about the pros and cons of adding more training points based on if the tra
 <p><strong>Answer: </strong></p>
 <ul>
 <li>Grid search is a technique that is used to calculate the best parameters to be used for a given model.
-Grid creates a 2-D matrix for all the different combinations of Kernal and "C" and then compute F1-score at each cell level of grdi. Which ever combination is having the best score is the right cobmination for the Model to execute.</li>
+Grid creates a 2-D matrix for all the different combinations of Kernal and "C" and then compute F1-score at each cell level of grid. Which ever combination is having the best score is the right cobmination for the Model to execute.
+We can even understand it as an algorithm with the help of which we can tune hyper-parameters of a model. We pass the hyper-parameters to tune, the possible values for each hyper-parameter and a performance metric as input to the grid search algorithm. The algorithm will then place all the possible hyper-parameter combination in a grid and then find the performance of the model for each combination against some cross-validation set. Then it outputs the hyper-parameter combination that gives the best result.</li>
+</ul>
+<p>In layman term, we can also say it is a brute force method to estimate hyperparameters. Say you have k hyperparameters, and each one of them have ci possible values. Then, performing grid search is basically taking a Cartesian product of these possible values.</p>
+<ul>
 <li>It can be applied to a learning algorith by way of defining the Parameters like Kernel and C and then use those parameters in GridSearchCV method to check for the best estimate where the model fits.</li>
 </ul>
 
@@ -12440,7 +12446,7 @@ Grid creates a 2-D matrix for all the different combinations of Kernal and "C" a
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ul>
-<li>K-fold cross validation training technique is making buckets of data known as "K" while spliting the data for train-test. K-fold is used to create seperate buckets of training and test data so as to avoid any biasedness in the data. Later the results from all the different buckets is averaged out to get the result.</li>
+<li>In K-fold cross validation training technique, we first split our data into train and test and then apply k-fold on the train dataset. Now after this step we train our model on (k-1) folds and use 1 fold for cross-validation. This process is repeated k times, each time with a different cross-validation set. The average cross-validation score is used to check the performance of the model. Once you have selected the best parameters using gridSearch along with k-fold cross-validation, we will use the test set to check the final performance of the model.</li>
 <li>Using K-fold randomizes the data so it helps grid search by not using one set of training test data.</li>
 </ul>
 
@@ -12583,7 +12589,8 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong> Hint: </strong> The answer comes from the output of the code snipped above.</p>
 <p><strong>Answer: </strong>
-Parameter 'max_depth' is 4 for the optimal model.</p>
+Parameter 'max_depth' is 4 for the optimal model.
+This is similar to what we have guessed in answer 6 above</p>
 
 </div>
 </div>
@@ -12678,9 +12685,12 @@ Predicted selling price for Client 3&#39;s home: $931,636.36
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ul>
-<li>Predicted selling price for Client 1's home: <code>'$403,025.00'</code></li>
-<li>Predicted selling price for Client 2's home: '<code>$237,478.72'</code></li>
-<li>Predicted selling price for Client 3's home: '<code>$931,636.36'</code></li>
+<li><p>For the first client, the price is less than median and mean although he is coming in the middle bracket where the rooms are not less and even the neighbourhood poverty level is not too bad. If we see the student to techer ratio that is also not bad. So based on that seems the price is less. It should be around $450K</p>
+</li>
+<li><p>For the second client, the price is good if we take neighbourhood poverty ratio and student to teacher ratio in to consideration. It is good price to see this property</p>
+</li>
+<li><p>For the third client, he is having the best property amoung the three and so is the price which is near to the maximum price.</p>
+</li>
 </ul>
 
 </div>
